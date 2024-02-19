@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div>
+    <form style="text-align: center" method="post">
+        {% csrf_token %}
+        Are You Sure Log out <br>
+        <a>
+            <button type="submit">Yes</button>
+        </a>
+    </form>
+        <a href="{% url 'home' %}">
+            <button> No</button>
+        </a>
+    </div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %} Author Detail{% endblock %}
+{% block content %}
+    <h3>Author Detail Page</h3>
+    <div class="row mt-5">
+        <div class="col-3">
+            <img src="{{ author.avatar.url }}" class="img-fluid" alt="">
+        </div>
+        <div class="col-6">
+            <h5>{{ author.first_name }}  {{ author.last_name }}</h5>
+{#            <span>Published: {{ book.published }}</span> <br>#}
+{#            <span>Genres:#}
+{#                {% for genr in author.genre.all %}#}
+{#                    <a href="" class="fw-light">{{ genr.name }}</a>#}
+{#                {% endfor %}#}
+{##}
+{#            </span>#}
+            <p>WEB: {{ author.website }}</p>
+            <p>birthdate: {{ author.birthdate }}</p>
+
+            <p>{{ author.about }}</p>
+        
+        </div>
+    <hr>
+    </div>
+        <div class="row">
+        <h3>Books</h3>
+        <div class="col-9">
+            {% for book in author.books.all %}
+    <div class="row mt-5">
+        <div class="col-3">
+            <img src="{{ book.cover.url }}" class="img-fluid" alt="">
+        </div>
+        <div class="col-6">
+            <h5>{{ book.title }}</h5>
+            <span class="my-2">Authors:
+                {% for author in book.authors.all %}
+                    <a href="{% url 'books:author-detail' author.pk %}" class="fw-bold">
+                    {{ author.first_name }} {{ author.last_name }}
+                    </a>
+                {% endfor %}
+            </span><br>
+            <span>Published: {{ book.published }}</span> <br>
+            <span>Genres:
+                {% for genr in book.genre.all %}
+                    <a href="" class="fw-light">{{ genr.name }}</a>
+                {% endfor %}
+
+            </span>
+
+            <p>{{ book.description }}</p>
+            <p>ISBN: {{ book.isbn }}</p>
+            <p>Page: {{ book.page }}</p>
+        </div>
+            {% endfor %}
+
+        </div>
+
+
+    </div>
+
+{% endblock %}
